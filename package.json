@@ -4,20 +4,23 @@
   "description": "",
   "main": "dist/dispatch.js",
   "scripts": {
-	"build": "rimraf -rf dist/ && tsc",
-	"dev": "cross-env NODE_ENV=development nodemon --watch scripts --watch dist dist/scripts/dev.js",
+    "build": "rimraf -rf dist/ && tsc",
+    "dev": "tsc --watch & cross-env NODE_ENV=development nodemon --watch scripts --watch dist dist/scripts/dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "graceful": "^1.0.2",
     "koa": "^2.7.0",
     "koa-body": "^4.1.0",
     "koa-logger": "^3.2.1",
     "koa-router": "^7.4.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
-    "sequelize": "^5.12.3"
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.12.3",
+    "sequelize-typescript": "^1.0.0-beta.3"
   },
   "devDependencies": {
     "@types/koa": "^2.0.49",
