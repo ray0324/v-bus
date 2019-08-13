@@ -3,18 +3,23 @@
 ## 数据表
 
 https://www.wstmart.net/database-952.html
+http://augustrush.me/post/database-design-and-comprehension
+https://segmentfault.com/q/1010000006838499
+https://my.oschina.net/eechen/blog/857845
 
 ### Users - 用户表
 ---------------------------------------------
 id - 用户ID
 username - 用户名称（英文ID）
-nickname - 昵称
+nickname - 昵称(展示)
 password - 密码
 email - 邮箱
 mobile - 手机号码
 gender - 性别
 birthdate - 出生日期
-openid - 公众号openid
+openid - 公众号openid(备用)
+create_time - 创建时间
+update_time - 更新时间
 
 ### Address - 用户配送地址表
 ---------------------------------------------
@@ -27,10 +32,17 @@ is_default - 是否为默认地址
 create_time - 创建时间
 update_time - 更新时间
 
+### Category - 产品分类表
+---------------------------------------------
+id - 自增ID
+pid - 父类ID
+name - 分类名称
+
 ### Products - 商品表
 ---------------------------------------------
 id - 商品ID
 sn - 商品编号
+cat_id - 分类ID
 name - 商品名称
 img - 商品图片
 qty - 库存数量
@@ -60,7 +72,7 @@ order_id - 订单ID
 prod_id - 商品ID
 prod_name - 商品名称
 prod_price - 商品价格
-order_qty - 订购数量
+prod_qty - 订购数量
 
 ### Transaction - 交易(支付)表
 ---------------------------------------------
