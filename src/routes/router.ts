@@ -1,6 +1,6 @@
 import * as Router from 'koa-router';
 
-import '../models/sequelize';
+import User from '../models/user';
 
 let router = new Router();
 
@@ -13,5 +13,11 @@ router.get('/', ctx => {
 router.get('/api/version', ctx => {
   ctx.body = 'v1.0.0';
 });
+
+router.get('/api/db', async (ctx)=>{
+  const rst = await User.findAll();
+  ctx.body = rst;
+})
+
 
 export default router;

@@ -17,9 +17,6 @@ email - 邮箱
 mobile - 手机号码
 gender - 性别
 birthdate - 出生日期
-openid - 公众号openid(备用)
-create_time - 创建时间
-update_time - 更新时间
 
 ### Address - 用户配送地址表
 ---------------------------------------------
@@ -29,8 +26,6 @@ username - 收货人姓名
 mobile - 收货人手机
 address - 详细地址
 is_default - 是否为默认地址
-create_time - 创建时间
-update_time - 更新时间
 
 ### Category - 产品分类表
 ---------------------------------------------
@@ -45,12 +40,10 @@ sn - 商品编号
 cat_id - 分类ID
 name - 商品名称
 img - 商品图片
+desc - 商品描述
 qty - 库存数量
 unit - 单位
 price -价格
-desc - 商品描述
-create_time - 创建时间
-update_time - 更新时间
 
 ### Orders - 订单表
 ---------------------------------------------
@@ -63,7 +56,6 @@ username - 收货人姓名
 address - 收货地址
 mobile - 手机号码
 order_from - 订单来源 0-微信 1-小程序
-create_time - 创建时间
 
 ### OrderProducts - 订单商品表
 ---------------------------------------------
@@ -91,4 +83,3 @@ id - 自增ID
 order_no - 订单号
 events - 事件详情
 result - 结果详情
-created_at - 生成时间
