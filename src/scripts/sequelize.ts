@@ -11,6 +11,9 @@ const sequelize = new Sequelize({
   port: config.db.port,
 });
 
+console.log('loaded models:')
+console.log(Object.keys(models).toString());
+
 sequelize.addModels(Object.keys(models).map(key => models[key]));
 
 sequelize

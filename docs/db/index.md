@@ -7,7 +7,7 @@ http://augustrush.me/post/database-design-and-comprehension
 https://segmentfault.com/q/1010000006838499
 https://my.oschina.net/eechen/blog/857845
 
-### Users - 用户表
+### [x] 1. User - 用户表
 ---------------------------------------------
 id - 用户ID
 username - 用户名称（英文ID）
@@ -15,10 +15,10 @@ nickname - 昵称(展示)
 password - 密码
 email - 邮箱
 mobile - 手机号码
-gender - 性别
+gender - 性别 0-无 1-男 2-女
 birthdate - 出生日期
 
-### Address - 用户配送地址表
+### [x] 2. Address - 用户配送地址表
 ---------------------------------------------
 id - 地址ID
 user_id - 用户ID
@@ -27,13 +27,13 @@ mobile - 收货人手机
 address - 详细地址
 is_default - 是否为默认地址
 
-### Category - 产品分类表
+### [x] 3. Category - 产品分类表
 ---------------------------------------------
 id - 自增ID
 pid - 父类ID
 name - 分类名称
 
-### Products - 商品表
+### [x] 4. Product - 商品表
 ---------------------------------------------
 id - 商品ID
 sn - 商品编号
@@ -45,7 +45,7 @@ qty - 库存数量
 unit - 单位
 price -价格
 
-### Orders - 订单表
+### [x] 5. Order - 订单表
 ---------------------------------------------
 id - 订单ID
 order_no - 订单编号
@@ -57,7 +57,7 @@ address - 收货地址
 mobile - 手机号码
 order_from - 订单来源 0-微信 1-小程序
 
-### OrderProducts - 订单商品表
+### [x] 6. OrderProduct - 订单商品表
 ---------------------------------------------
 id - 自增ID
 order_id - 订单ID
@@ -66,18 +66,17 @@ prod_name - 商品名称
 prod_price - 商品价格
 prod_qty - 订购数量
 
-### Transaction - 交易(支付)表
+### 7. Transaction - 交易(支付)表
 ---------------------------------------------
 id - 自增ID
-order_no - 订单号
 user_id - 用户ID
-type - 支付类型 0 - 支付宝支付 1-微信微信
+order_no - 订单号
+type - 支付类型 0-微信微信 1-支付宝支付
 source - 支付来源 1-wx 2-app 3-web 4-小程序
 amount - 支付金额
 status - 支付状态 -2:异常 -1：取消 0 未完成 1已完成
-complete_time - 交易完成时间
 
-### TransactionRecord - 交易(支付)记录表
+### 8. TransactionRecord - 交易(支付)记录表
 ---------------------------------------------
 id - 自增ID
 order_no - 订单号

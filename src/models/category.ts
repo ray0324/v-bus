@@ -6,10 +6,12 @@ import {
   PrimaryKey,
   AllowNull,
   DataType,
-  Unique,
+  HasMany,
 } from 'sequelize-typescript';
 
-@Table({ timestamps:false })
+import Product from './product';
+
+@Table({ timestamps: false })
 export default class Category extends Model<Category> {
   @AutoIncrement
   @PrimaryKey
@@ -21,7 +23,9 @@ export default class Category extends Model<Category> {
   pid: number;
 
   @AllowNull(false)
-  @Unique
   @Column(DataType.STRING(32))
   name: string;
+
+  @HasMany(() => Product, 'cat_id')
+  products: Product[];
 }

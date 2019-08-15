@@ -7,7 +7,10 @@ import {
   AllowNull,
   DataType,
   Unique,
+  // ForeignKey,
+  BelongsTo,
 } from 'sequelize-typescript';
+import Category from './category';
 
 @Table({ createdAt: 'created_at', updatedAt: 'updated_at' })
 export default class Product extends Model<Product> {
@@ -21,9 +24,8 @@ export default class Product extends Model<Product> {
   @Column(DataType.STRING(32))
   sn: string;
 
-  @AllowNull(true)
-  @Column(DataType.INTEGER())
-  cat_id: number;
+  @BelongsTo(() => Category, 'cat_id')
+  cat: Category;
 
   @Column(DataType.STRING(32))
   name: string;
