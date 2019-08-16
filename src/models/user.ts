@@ -7,7 +7,12 @@ import {
   AllowNull,
   DataType,
   Unique,
+  BeforeCreate,
 } from 'sequelize-typescript';
+
+import * as bcrypt from 'bcrypt';
+
+const saltRounds = 10;
 
 @Table({ createdAt: 'created_at', updatedAt: 'updated_at' })
 export default class User extends Model<User> {
@@ -17,6 +22,7 @@ export default class User extends Model<User> {
   id: number;
 
   @AllowNull(false)
+  @Unique
   @Column(DataType.STRING(32))
   username: string;
 
@@ -27,7 +33,8 @@ export default class User extends Model<User> {
   @Column(DataType.STRING(32))
   password: string;
 
-  @AllowNull(true)
+  @AllowNull(false)
+  @Unique
   @Column(DataType.STRING(32))
   email: string;
 
@@ -36,11 +43,18 @@ export default class User extends Model<User> {
   @Column(DataType.STRING(11))
   mobile: string;
 
-  @AllowNull(false)
+  @AllowNull(true)
   @Column(DataType.TINYINT())
   gender: number;
 
   @AllowNull(true)
   @Column(DataType.DATEONLY())
   birthdate: Date;
+
+  @BeforeCreate
+  static async encryptPwd(user: User) {
+    const salt = await bcrypt.genSalt(saltRounds);
+    user.password = await bcrypt.hash(user.password, salt);
+  }
+
 }

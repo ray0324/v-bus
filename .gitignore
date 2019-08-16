@@ -9,4 +9,6 @@
 
 # production
 /dist
+.env
+/log
 
