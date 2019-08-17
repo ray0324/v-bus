@@ -2,13 +2,13 @@ CREATE TABLE `users` (
   `id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户ID',
   `username` varchar(32) NOT NULL COMMENT '英文名称',
   `nickname` varchar(32) NULL COMMENT '昵称',
-  `password` varchar(32) NOT NULL COMMENT '密码',
+  `password` varchar(128) NOT NULL COMMENT '密码',
   `email` varchar(32) NULL COMMENT '邮箱',
   `mobile` char(11) NULL COMMENT '手机号',
   `gender` tinyint(1) UNSIGNED NULL DEFAULT 0 COMMENT '性别 0-无 1-男 2-女',
   `birthdate` date NULL COMMENT '出生日期',
-  `created_at` datetime NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updated_at` datetime NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `created_at` datetime NULL COMMENT '创建时间',
+  `updated_at` datetime NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) COMMENT = '用户表';
 CREATE TABLE `addresses` (
@@ -18,8 +18,8 @@ CREATE TABLE `addresses` (
   `mobile` char(11) NOT NULL COMMENT '手机号码',
   `address` varchar(256) NOT NULL COMMENT '地址',
   `is_default` tinyint UNSIGNED NOT NULL DEFAULT 0 COMMENT '0-否 1-是',
-  `created_at` datetime NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updated_at` datetime NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `created_at` datetime NULL COMMENT '创建时间',
+  `updated_at` datetime NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) COMMENT = '地址表';
 CREATE TABLE `products` (
@@ -31,8 +31,8 @@ CREATE TABLE `products` (
   `unit` varchar(10) NULL COMMENT '单位',
   `price` float NULL COMMENT '价格',
   `desc` text NULL COMMENT '描述',
-  `create_time` datetime NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` datetime NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `created_at` datetime NULL  COMMENT '创建时间',
+  `updated_at` datetime NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) COMMENT = '产品表';
 CREATE TABLE `orders` (
@@ -48,7 +48,7 @@ CREATE TABLE `orders` (
   `address` varchar(60) NOT NULL COMMENT '配送地址',
   `mobile` char(11) NOT NULL COMMENT '客户手机号码',
   `order_from` varchar(255) NULL COMMENT '订单来源',
-  `create_time` datetime NULL ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` datetime NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) COMMENT = '订单表';
 CREATE TABLE `order_products` (
@@ -73,8 +73,8 @@ CREATE TABLE `transactions` (
   `source` tinyint NULL COMMENT '支付来源 1-wx 2-app 3-web 4-小程序',
   `amount` float NULL COMMENT ' 支付金额',
   `status` tinyint NULL COMMENT '支付状态 -2:异常 -1：取消 0 未完成 1已完成',
-  `created_at` datetime NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updated_at` datetime NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `created_at` datetime NULL COMMENT '创建时间',
+  `updated_at` datetime NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) COMMENT = '交易表';
 CREATE TABLE `transaction_records` (
