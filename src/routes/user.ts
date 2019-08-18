@@ -10,7 +10,7 @@ function tokenForUser(user: any) {
   return jwt.sign(
     {
       uid: user.id,
-      exp: Date.now() + 3600*7,
+      exp: Date.now() + 3600 * 7,
     },
     config.jwtSecret,
   );

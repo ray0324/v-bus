@@ -11,7 +11,10 @@ import {
 
 import Product from './product';
 
-@Table({ timestamps: false })
+@Table({
+  tableName: 'categories',
+  timestamps: false,
+})
 export default class Category extends Model<Category> {
   @AutoIncrement
   @PrimaryKey

@@ -9,6 +9,7 @@ export default {
   serve: {
     port: process.env.PORT,
   },
+  // log4js日志配置
   logLevel: process.env.LOG_LEVEL,
   // 数据库配置
   db: {

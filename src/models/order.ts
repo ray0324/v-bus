@@ -9,7 +9,11 @@ import {
   Unique,
 } from 'sequelize-typescript';
 
-@Table({ createdAt: 'created_at', updatedAt: 'updated_at' })
+@Table({
+  tableName: 'orders',
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
+})
 export default class Order extends Model<Order> {
   @AutoIncrement
   @PrimaryKey
@@ -48,5 +52,4 @@ export default class Order extends Model<Order> {
   @AllowNull(false)
   @Column(DataType.INTEGER())
   order_from: number;
-
 }

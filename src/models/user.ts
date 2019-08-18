@@ -14,7 +14,11 @@ import * as bcrypt from 'bcrypt';
 
 const saltRounds = 10;
 
-@Table({ createdAt: 'created_at', updatedAt: 'updated_at' })
+@Table({
+  tableName: 'users',
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
+})
 export default class User extends Model<User> {
   @AutoIncrement
   @PrimaryKey
@@ -56,5 +60,4 @@ export default class User extends Model<User> {
     const salt = await bcrypt.genSalt(saltRounds);
     user.password = await bcrypt.hash(user.password, salt);
   }
-
 }

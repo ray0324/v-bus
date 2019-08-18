@@ -12,7 +12,11 @@ import {
 } from 'sequelize-typescript';
 import Category from './category';
 
-@Table({ createdAt: 'created_at', updatedAt: 'updated_at' })
+@Table({
+  tableName: 'products',
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
+})
 export default class Product extends Model<Product> {
   @AutoIncrement
   @PrimaryKey

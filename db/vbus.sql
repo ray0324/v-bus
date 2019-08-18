@@ -1,5 +1,5 @@
 CREATE TABLE `users` (
-  `id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户ID',
   `username` varchar(32) NOT NULL COMMENT '英文名称',
   `nickname` varchar(32) NULL COMMENT '昵称',
   `password` varchar(128) NOT NULL COMMENT '密码',
@@ -81,5 +81,6 @@ CREATE TABLE `transaction_records` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '记录ID',
   `order_no` varchar(32) NULL COMMENT '订单号',
   `event` varchar(512) NULL COMMENT '事件详情',
-  `result` varchar(512) NULL COMMENT '结果详情'
+  `result` varchar(512) NULL COMMENT '结果详情',
+  PRIMARY KEY (`id`)
 ) COMMENT = '交易记录表';
