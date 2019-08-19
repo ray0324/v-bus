@@ -24,6 +24,6 @@ export default {
       min: 0,
       idle: 10000,
     },
-    logging: false,
+    logging: true,
   },
 };

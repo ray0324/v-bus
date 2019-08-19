@@ -9,6 +9,7 @@ const sequelize = new Sequelize({
   password: config.db.password,
   host: config.db.host,
   port: config.db.port,
+  logging: config.db.logging
 });
 
 console.log('loaded models:')

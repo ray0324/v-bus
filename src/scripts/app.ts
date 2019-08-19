@@ -12,9 +12,8 @@ app.use(async (ctx, next) => {
     await next();
   } catch (err) {
     logger.error(err.message);
-    // ctx.status = 200;
     ctx.body = {
-      error_no: -10001,
+      error_no: err.code || -10001,
       error_msg: err.message,
     };
   }
@@ -26,7 +25,7 @@ app.use(router.routes());
 
 app.use(async ctx => {
   if (ctx.url === '/') {
-    ctx.body = 'Vbus Server started.';
+    ctx.body = 'vbus server is started.';
   }
 });
 

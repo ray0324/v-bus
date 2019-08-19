@@ -6,7 +6,7 @@ import User from '../models/user';
 
 const router = new Router();
 
-router.prefix('/api')
+router.prefix('/api');
 
 // index
 router.get('/', ctx => {
@@ -18,8 +18,7 @@ router.get('/', ctx => {
 // });
 
 router.get('/db', async ctx => {
-  const rst = await User.findAll();
-  ctx.body = rst;
+  ctx.body = await User.findAll();
 });
 
 // router.get('/api/prod', async ctx => {
