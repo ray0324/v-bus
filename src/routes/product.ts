@@ -16,7 +16,7 @@ router.post('/categories', async ctx => {
   const { catname, pid } = ctx.request.body;
 
   const existCat = await Category.findOne({
-    where:{ name: catname },
+    where: { name: catname },
   });
 
   if (existCat) {

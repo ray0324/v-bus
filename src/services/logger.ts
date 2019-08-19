@@ -1,16 +1,8 @@
 import * as log4js from 'log4js';
 import config from '../config';
 
-log4js.configure({
-  appenders: {
-    out: { type: 'stdout' },
-    app: { type: 'dateFile', filename: './log/app.log' },
-  },
-  categories: {
-    default: { appenders: ['app'], level: config.logLevel },
-  },
-});
+log4js.configure(config.log4js);
 
-const logger = log4js.getLogger();
+const logger = log4js.getLogger('debug');
 
 export { logger as default };
