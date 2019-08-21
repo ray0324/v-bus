@@ -24,6 +24,7 @@ CREATE TABLE `addresses` (
 ) COMMENT = '地址表';
 CREATE TABLE `products` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `cat_id` int UNSIGNED NOT NULL DEFAULT 0 COMMENT '类别ID',
   `sn` varchar(20) NOT NULL COMMENT '产品编码',
   `name` varchar(20) NOT NULL COMMENT '产品名称',
   `img` varchar(512) NOT NULL COMMENT '图片地址',

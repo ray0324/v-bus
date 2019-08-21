@@ -1,6 +1,6 @@
 // import { Op } from 'sequelize';
 import router from './router';
-import { Category } from '../models';
+import { Category, Product } from '../models';
 import RespError from '../utils/RespError';
 import logger from '../services/logger';
 // import Schema from 'validate';
@@ -37,17 +37,37 @@ router.del('/categories/:id', async ctx => {
     throw new RespError(-30002, '参数格式错误,请检查');
   }
 
-  if (id !== '0') {
-    const existSubCat = await Category.findOne({
-      where: { pid: ctx.params.id },
-    });
-
-    if (existSubCat) {
-      throw new RespError(-30003, '该类别下存在子分类,请先删除子分类');
-    }
+  if (Number(id) <= 0) {
+    throw new RespError(-30003, '不存在该ID');
   }
 
-  const result = await Category.destroy({ where: { id } });
+  const existSubCat = await Category.findOne({
+    where: { pid: ctx.params.id },
+  });
 
-  ctx.body = result;
+  if (existSubCat) {
+    throw new RespError(-30004, '该类别下存在子分类,请先删除子分类');
+  }
+
+  const n = await Category.destroy({ where: { id } });
+
+  if (n <= 0) {
+    throw new RespError(-30005, '删除失败');
+  }
+
+  ctx.body = {
+    error_no: 0,
+    error_msg: '删除成功',
+  };
+});
+
+router.get('/products', async ctx => {
+  const { catid } = ctx.request.query;
+  logger.debug('catid=%s', catid);
+
+  const products = await Product.findAll({
+    where: { cat_id: catid },
+  });
+
+  ctx.body = products;
 });
