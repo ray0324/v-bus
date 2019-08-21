@@ -1,7 +1,7 @@
 import * as Koa from 'koa';
 import * as bodyParser from 'koa-body';
 import router from '../routes';
-import './sequelize';
+import '../models/sequelize';
 
 import logger from '../services/logger';
 

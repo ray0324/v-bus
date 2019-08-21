@@ -1,6 +1,8 @@
 import { Sequelize } from 'sequelize-typescript';
 import config from '../config';
-import * as models from '../models';
+// import * as  models from '.';
+import logger from '../services/logger';
+import * as path from 'path';
 
 const sequelize = new Sequelize({
   dialect: config.db.dialect as any,
@@ -9,13 +11,17 @@ const sequelize = new Sequelize({
   password: config.db.password,
   host: config.db.host,
   port: config.db.port,
-  logging: config.db.logging
+  logging:
+    config.db.logging &&
+    (sql => {
+      logger.debug('SQL:', sql);
+    }),
 });
 
-console.log('loaded models:')
-console.log(Object.keys(models).toString());
-
-sequelize.addModels(Object.keys(models).map(key => models[key]));
+// sequelize.addModels(Object.keys(models).map(key => models[key]));
+// console.log(path.resolve(__dirname + '/**/*.model.*'));
+// note: /**/*.model.ts will compiled to /**/*.model.js first so
+sequelize.addModels([path.resolve(__dirname + '/**/*.model.*')]);
 
 sequelize
   .authenticate()

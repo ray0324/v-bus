@@ -1,3 +1,3 @@
-export { default as User } from './user';
-export { default as Product } from './product';
-export { default as Category } from './category';
+export { default as User } from './user.model';
+export { default as Product } from './product.model';
+export { default as Category } from './category.model';

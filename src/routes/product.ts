@@ -66,6 +66,11 @@ router.get('/products', async ctx => {
   logger.debug('catid=%s', catid);
 
   const products = await Product.findAll({
+    include: [
+      {
+        model: Category,
+      },
+    ],
     where: { cat_id: catid },
   });
 

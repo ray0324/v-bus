@@ -10,7 +10,7 @@ import {
   // ForeignKey,
   BelongsTo,
 } from 'sequelize-typescript';
-import Category from './category';
+import Category from './category.model';
 
 @Table({
   tableName: 'products',
@@ -29,7 +29,7 @@ export default class Product extends Model<Product> {
   sn: string;
 
   @BelongsTo(() => Category, 'cat_id')
-  cat: Category;
+  category: Category;
 
   @Column(DataType.STRING(32))
   name: string;

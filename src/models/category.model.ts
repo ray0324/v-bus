@@ -9,7 +9,7 @@ import {
   HasMany,
 } from 'sequelize-typescript';
 
-import Product from './product';
+import Product from './product.model';
 
 @Table({
   tableName: 'categories',
