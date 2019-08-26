@@ -5,7 +5,7 @@ import * as os from 'os';
 let now = () => new Date().toISOString();
 
 cluster.setupMaster({
-  exec: path.join(__dirname, 'scripts/worker.js'),
+  exec: path.join(__dirname, 'scripts/worker'),
 });
 
 if (cluster.isMaster) {

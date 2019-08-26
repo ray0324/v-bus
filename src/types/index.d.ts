@@ -25,14 +25,9 @@ declare module 'validate' {
       | FunctionConstructor;
   };
 
-  export interface ErrorWithPath extends Error {
-    path: String;
-  }
-
-  type ValidateError = ErrorWithPath | ErrorWithPath[];
-
   export default class {
     constructor(target: SchemaType);
-    validate(target: { [key: string]: any }): ValidateError[];
+    message(msg: { [key: keyof Rule]: any }): void;
+    validate(target: { [key: string]: any }): any;
   }
 }

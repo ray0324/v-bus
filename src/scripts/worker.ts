@@ -11,7 +11,7 @@ const start = () => {
   } = config;
   const server = app.listen(port, () => {
     console.log(
-      `[${now()}]   worker#${process.pid} rap2-dolores is running as ${port}`,
+      `[${now()}]   worker#${process.pid} is running as ${port}`,
     );
   });
 
