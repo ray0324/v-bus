@@ -1,9 +1,9 @@
 import * as Koa from 'koa';
 import * as bodyParser from 'koa-body';
-import router from '../routes';
-import '../models/sequelize';
-
-import logger from '../services/logger';
+import router from './routes';
+import './models/sequelize';
+import logger from './services/logger';
+import config from './config';
 
 const app = new Koa();
 
@@ -29,4 +29,17 @@ app.use(async ctx => {
   }
 });
 
-export default app;
+const start = () => {
+  let port = config.serve.port;
+  let url = `http://localhost:${port}`;
+  console.log('----------------------------------------');
+  app.listen(port, () => {
+    console.log(`app is running as ${url}`);
+  });
+};
+
+start();
+
+// export default app;
+
+

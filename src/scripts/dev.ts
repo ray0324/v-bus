@@ -1,5 +1,5 @@
 import config from '../config';
-import app from './app';
+import app from '../app';
 
 const start = () => {
   let port = config.serve.port;

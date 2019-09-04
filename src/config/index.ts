@@ -13,12 +13,12 @@ export default {
 
   // 数据库配置
   db: {
-    dialect: process.env.DB_DIALECT || 'mysql',
-    port: Number(process.env.DB_PORT) || 3306,
+    dialect: 'mysql',
+    port: 3306,
     host: process.env.DB_HOST,
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
+    username: process.env.DB_USER,
+    password: process.env.DB_PWD,
+    database: process.env.DB_NAME,
     pool: { max: 5, min: 0, idle: 10000 },
     logging: true,
   },
