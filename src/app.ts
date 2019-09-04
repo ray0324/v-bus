@@ -2,16 +2,21 @@ import * as Koa from 'koa';
 import * as bodyParser from 'koa-body';
 import router from './routes';
 import './models/sequelize';
-import logger from './services/logger';
+// import logger from './services/logger';
 import config from './config';
 
+// import * as kLogger from 'koa-logger';
+
 const app = new Koa();
+
+// logger
+// app.use(logger());
 
 app.use(async (ctx, next) => {
   try {
     await next();
   } catch (err) {
-    logger.error(err.message);
+    // logger.error(err.message);
     ctx.body = {
       error_no: err.code || -10001,
       error_msg: err.message,
@@ -41,5 +46,3 @@ const start = () => {
 start();
 
 // export default app;
-
-

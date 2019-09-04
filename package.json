@@ -5,7 +5,7 @@
   "main": "dist/dispatch.js",
   "scripts": {
     "build": "rimraf -rf dist/ && tsc",
-    "dev": "cross-env NODE_ENV=development nodemon --watch dist dist/scripts/dev.js",
+    "dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

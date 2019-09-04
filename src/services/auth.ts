@@ -11,5 +11,6 @@ export default async function(ctx: any, next: any) {
   const user = jwt.verify(token, config.jwtSecret);
   logger.debug(user);
   ctx.state = { user };
+
   await next();
 }
