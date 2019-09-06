@@ -3,10 +3,10 @@ import { Op } from 'sequelize';
 import router from './router';
 import { User } from '../models';
 import config from '../config';
-import RespError from '../utils/RespError';
 import logger from '../services/logger';
 import auth from '../services/auth';
 import * as bcrypt from 'bcrypt';
+import { CtxBody } from './context';
 
 function tokenForUser(user: any) {
   return jwt.sign(
@@ -28,12 +28,21 @@ router.post('/users/register', async ctx => {
   });
 
   if (existUser) {
-    throw new RespError(-20001, '用户名或者邮箱已经存在');
+    (<CtxBody>ctx.body) = {
+      err_no: -20001,
+      err_msg: '用户名或者邮箱已经存在',
+    };
+    return;
   }
 
   const user = await User.create({ username, email, password, mobile });
-  ctx.body = {
-    token: tokenForUser(user),
+
+  (<CtxBody>ctx.body) = {
+    err_no: 0,
+    err_msg: '注册成功',
+    data: {
+      token: tokenForUser(user),
+    },
   };
 });
 
@@ -46,17 +55,29 @@ router.post('/users/login', async ctx => {
   const user = await User.findOne({ where: { username } });
 
   if (!user) {
-    throw new RespError(-20002, '用户名不存在');
+    (<CtxBody>ctx.body) = {
+      err_no: -20002,
+      err_msg: '用户名不存在',
+    };
+    return;
   }
 
   const isMatch = await bcrypt.compare(password, user.password);
 
   if (!isMatch) {
-    throw new RespError(-20003, '用户密码不匹配');
+    (<CtxBody>ctx.body) = {
+      err_no: -20003,
+      err_msg: '用户密码不匹配',
+    };
+    return;
   }
 
-  ctx.body = {
-    token: tokenForUser(user),
+  (<CtxBody>ctx.body) = {
+    err_no: 0,
+    err_msg: '登录成功',
+    data: {
+      token: tokenForUser(user),
+    },
   };
 });
 
@@ -79,8 +100,16 @@ router.get('/users/profile', auth, async ctx => {
   });
 
   if (!user) {
-    throw new RespError(-20004, '未能检索到用户信息');
+    (<CtxBody>ctx.body) = {
+      err_no: -20004,
+      err_msg: '未能检索到用户信息',
+    };
+    return;
   }
 
-  ctx.body = user;
+  (<CtxBody>ctx.body) = {
+    err_no: 0,
+    err_msg: '查询成功',
+    data: user,
+  };
 });

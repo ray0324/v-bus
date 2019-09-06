@@ -4,6 +4,7 @@ import router from './routes';
 import './models/sequelize';
 // import logger from './services/logger';
 import config from './config';
+import { CtxBody } from './routes/context';
 
 // import * as kLogger from 'koa-logger';
 
@@ -16,10 +17,9 @@ app.use(async (ctx, next) => {
   try {
     await next();
   } catch (err) {
-    // logger.error(err.message);
-    ctx.body = {
-      error_no: err.code || -10001,
-      error_msg: err.message,
+    (<CtxBody>ctx.body) = {
+      err_no: err.code || -10001,
+      err_msg: err.message,
     };
   }
 });
