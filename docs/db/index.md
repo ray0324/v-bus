@@ -52,6 +52,9 @@ order_no - 订单编号
 user_id - 用户ID
 status - 订单状态 -3:用户拒收 -2:未付款的订单 -1：用户取消 0:待发货 1:配送中 2:用户确认收货
 total - 总价
+pay_type - 支付方式 0-在线支付 1-货到付款
+pay_from - 支付来源 1:支付宝，2：微信
+remark - 备注信息
 username - 收货人姓名
 address - 收货地址
 mobile - 手机号码
@@ -66,7 +69,12 @@ prod_name - 商品名称
 prod_price - 商品价格
 prod_qty - 订购数量
 
-### 7. Transaction - 交易(支付)表
+### [x] 7. Cart - 购物车
+user_id - 用户ID
+prod_id - 商品ID
+prod_qty - 订购数量
+
+### 8. Transaction - 交易(支付)表
 ---------------------------------------------
 id - 自增ID
 user_id - 用户ID
@@ -76,7 +84,7 @@ source - 支付来源 1-wx 2-app 3-web 4-小程序
 amount - 支付金额
 status - 支付状态 -2:异常 -1：取消 0 未完成 1已完成
 
-### 8. TransactionRecord - 交易(支付)记录表
+### 9. TransactionRecord - 交易(支付)记录表
 ---------------------------------------------
 id - 自增ID
 order_no - 订单号

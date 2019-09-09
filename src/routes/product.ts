@@ -85,7 +85,8 @@ router.del('/categories/:id', async ctx => {
 
 router.get('/products', async ctx => {
   const { catid } = ctx.request.query;
-  logger.debug('catid=%s', catid);
+
+  logger.debug('catid:', catid);
 
   const products = await Product.findAll({
     include: [
@@ -93,7 +94,7 @@ router.get('/products', async ctx => {
         model: Category,
       },
     ],
-    where: { cat_id: catid },
+    where: catid && { cat_id: catid },
   });
 
   (<CtxBody>ctx.body) = {
