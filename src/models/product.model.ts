@@ -43,7 +43,7 @@ export default class Product extends Model<Product> {
   desc: string;
 
   @AllowNull(false)
-  @Column(DataType.INTEGER())
+  @Column(DataType.FLOAT())
   qty: number;
 
   @AllowNull(true)

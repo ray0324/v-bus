@@ -4,8 +4,9 @@
   "description": "",
   "main": "dist/dispatch.js",
   "scripts": {
-    "build": "rimraf -rf dist/ && tsc",
+    "start": "nodemon",
     "dev": "nodemon",
+    "build": "rimraf -rf dist/ && tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
