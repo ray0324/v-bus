@@ -6,7 +6,6 @@ import config from '../config';
 import logger from '../services/logger';
 import auth from '../services/auth';
 import * as bcrypt from 'bcrypt';
-import { CtxBody } from './context';
 
 function tokenForUser(user: any) {
   return jwt.sign(
@@ -28,7 +27,7 @@ router.post('/users/register', async ctx => {
   });
 
   if (existUser) {
-    (<CtxBody>ctx.body) = {
+    ctx.body = {
       err_no: -20001,
       err_msg: '用户名或者邮箱已经存在',
     };
@@ -37,7 +36,7 @@ router.post('/users/register', async ctx => {
 
   const user = await User.create({ username, email, password, mobile });
 
-  (<CtxBody>ctx.body) = {
+  ctx.body = {
     err_no: 0,
     err_msg: '注册成功',
     data: {
@@ -55,7 +54,7 @@ router.post('/users/login', async ctx => {
   const user = await User.findOne({ where: { username } });
 
   if (!user) {
-    (<CtxBody>ctx.body) = {
+    ctx.body = {
       err_no: -20002,
       err_msg: '用户名不存在',
     };
@@ -65,14 +64,14 @@ router.post('/users/login', async ctx => {
   const isMatch = await bcrypt.compare(password, user.password);
 
   if (!isMatch) {
-    (<CtxBody>ctx.body) = {
+    ctx.body = {
       err_no: -20003,
       err_msg: '用户密码不匹配',
     };
     return;
   }
 
-  (<CtxBody>ctx.body) = {
+  ctx.body = {
     err_no: 0,
     err_msg: '登录成功',
     data: {
@@ -100,14 +99,14 @@ router.get('/users/profile', auth, async ctx => {
   });
 
   if (!user) {
-    (<CtxBody>ctx.body) = {
+    ctx.body = {
       err_no: -20004,
       err_msg: '未能检索到用户信息',
     };
     return;
   }
 
-  (<CtxBody>ctx.body) = {
+  ctx.body = {
     err_no: 0,
     err_msg: '查询成功',
     data: user,

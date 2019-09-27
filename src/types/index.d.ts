@@ -31,3 +31,9 @@ declare module 'validate' {
     validate(target: { [key: string]: any }): any;
   }
 }
+
+declare interface CtxBody {
+  err_no: number;
+  err_msg: string;
+  data?: any;
+}

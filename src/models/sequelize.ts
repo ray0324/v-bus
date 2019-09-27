@@ -11,6 +11,7 @@ const sequelize = new Sequelize({
   password: config.db.password,
   host: config.db.host,
   port: config.db.port,
+  // query: { raw: true },
   logging:
     config.db.logging &&
     (sql => {

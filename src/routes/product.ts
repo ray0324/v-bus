@@ -2,7 +2,6 @@
 import router from './router';
 import { Category, Product } from '../models';
 import logger from '../services/logger';
-import { CtxBody } from './context';
 
 // 查询分类
 router.get('/categories', async ctx => {
@@ -10,7 +9,7 @@ router.get('/categories', async ctx => {
     where: { pid: 0 },
   });
 
-  (<CtxBody>ctx.body) = {
+  ctx.body = {
     err_msg: '查询成功',
     err_no: 0,
     data: categories,
@@ -26,7 +25,7 @@ router.post('/categories', async ctx => {
   });
 
   if (existCat) {
-    (<CtxBody>ctx.body) = {
+    ctx.body = {
       err_no: -30001,
       err_msg: '类别已经存在',
     };
@@ -35,7 +34,7 @@ router.post('/categories', async ctx => {
 
   await Category.create({ name: catname, pid: pid || 0 });
 
-  (<CtxBody>ctx.body) = {
+  ctx.body = {
     err_no: 0,
     err_msg: '创建成功',
   };
@@ -48,7 +47,7 @@ router.del('/categories/:id', async ctx => {
   logger.debug('id=%s', id);
 
   if (!/\d/.test(id)) {
-    (<CtxBody>ctx.body) = {
+    ctx.body = {
       err_no: -30002,
       err_msg: '参数格式错误',
     };
@@ -60,7 +59,7 @@ router.del('/categories/:id', async ctx => {
   });
 
   if (existSubCat) {
-    (<CtxBody>ctx.body) = {
+    ctx.body = {
       err_no: -30004,
       err_msg: '该类别下存在子分类',
     };
@@ -70,14 +69,14 @@ router.del('/categories/:id', async ctx => {
   const n = await Category.destroy({ where: { id } });
 
   if (n <= 0) {
-    (<CtxBody>ctx.body) = {
+    ctx.body = {
       err_no: -30005,
       err_msg: '删除失败',
     };
     return;
   }
 
-  (<CtxBody>ctx.body) = {
+  ctx.body = {
     err_no: 0,
     err_msg: '删除成功',
   };
@@ -97,7 +96,7 @@ router.get('/products', async ctx => {
     where: catid && { cat_id: catid },
   });
 
-  (<CtxBody>ctx.body) = {
+  ctx.body = {
     err_no: 0,
     err_msg: '查询成功',
     data: products,
