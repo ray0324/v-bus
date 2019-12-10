@@ -82,6 +82,7 @@ router.del('/categories/:id', async ctx => {
   };
 });
 
+// 所有产品
 router.get('/products', async ctx => {
   const { catid } = ctx.request.query;
 

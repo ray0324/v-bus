@@ -14,14 +14,13 @@ import User from './user.model';
   timestamps: false,
   paranoid: true,
 })
-
 export default class Cart extends Model<Cart> {
   @BelongsTo(() => User, 'user_id')
   user: User;
 
-  @BelongsTo(()=>Product,'prod_id')
-  product:Product;
+  @BelongsTo(() => Product, 'prod_id')
+  product: Product;
 
   @Column(DataType.FLOAT())
-  prod_qty:number;
+  prod_qty: number;
 }
