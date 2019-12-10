@@ -16,7 +16,7 @@
 
 ```json
 {
-	"username":"ray5",
+    "username":"ray5",
     "email": "r5@foxmail.com",
     "password":"0324",
     "mobile":"13005448800"
@@ -49,7 +49,7 @@
 
 ```json
 {
-	"username":"ray",
+    "username":"ray",
     "password":"0324"
 }
 ```
@@ -77,12 +77,11 @@
 
 > `GET /api/users/profile`
 
-#### 请求参数
+#### 请求参数[Head]
 
 ```json
 {
-    // http header
-	"token":"eyJh.eyJ1aWQiOjE4LC.SZ-GRfl70IQTI88c",
+    "token":"eyJh.eyJ1aWQiOjE4LC.SZ-GRfl70IQTI88c",
 }
 ```
 
