@@ -103,3 +103,17 @@ router.get('/products', async ctx => {
     data: products,
   };
 });
+
+router.get('/products/:id', async ctx => {
+  const { id } = ctx.params;
+  logger.debug('id=%s', id);
+  const product = await Product.findOne({
+    where: { id: id },
+  });
+
+  ctx.body = {
+    err_msg: '查询成功',
+    err_no: 0,
+    data: product,
+  };
+});
